@@ -70,7 +70,7 @@ class ProposedService extends React.Component {
       this.props.updateFunction(response, this.props.service),
     )
 
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     });
   }
@@ -87,7 +87,7 @@ class ProposedService extends React.Component {
       this.props.updateFunction(response, this.props.service),
     )
 
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     });
   }

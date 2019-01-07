@@ -31,7 +31,7 @@ function buildSchedule(schedule) {
   };
 
   if (schedule) {
-    schedule.schedule_days.forEach((curr) => {
+    schedule.schedule_days.forEach(curr => {
       const schedule = curr;
       currDay = schedule.day;
       if (!is24Hours[currDay]) {

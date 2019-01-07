@@ -12,7 +12,7 @@ class MapOfLocations extends React.Component {
 
   componentWillMount() {
     this.setState({
-      locations: this.props.locations.map((loc) => {
+      locations: this.props.locations.map(loc => {
         const { address, name, schedule } = loc;
         return {
           name,
@@ -48,7 +48,7 @@ class MapOfLocations extends React.Component {
       });
     }
 
-    locations.forEach((loc) => {
+    locations.forEach(loc => {
       const { address, name } = loc;
       const locMarker = new google.maps.Marker({
         map,

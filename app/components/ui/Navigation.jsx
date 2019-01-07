@@ -32,7 +32,7 @@ class Navigation extends React.Component {
             role="search"
           >
             <input
-              ref={(c) => { this.searchComponent = c; }}
+              ref={c => { this.searchComponent = c; }}
               type="text"
               className="search-field"
               placeholder="Search for a service or organization"

@@ -94,9 +94,9 @@ function postSchedule(scheduleObj, promises) {
   }
   let currDay = [];
   let value = {};
-  Object.keys(scheduleObj).forEach((day) => {
+  Object.keys(scheduleObj).forEach(day => {
     currDay = scheduleObj[day];
-    currDay.forEach((curr) => {
+    currDay.forEach(curr => {
       value = {};
       if (curr.id) {
         if (!curr.openChanged && !curr.closeChanged) {
@@ -155,8 +155,8 @@ function createFullSchedule(scheduleObj) {
   if (scheduleObj) {
     const newSchedule = [];
     let tempDay = {};
-    Object.keys(scheduleObj).forEach((day) => {
-      scheduleObj[day].forEach((curr) => {
+    Object.keys(scheduleObj).forEach(day => {
+      scheduleObj[day].forEach(curr => {
         tempDay = {};
         tempDay.day = day;
         tempDay.opens_at = curr.opens_at;
@@ -220,14 +220,14 @@ export class OrganizationEditPage extends React.Component {
     if (resourceID) {
       const url = `/api/resources/${resourceID}`;
       fetch(url).then(r => r.json())
-        .then((data) => {
+        .then(data => {
           this.setState({
             resource: data.resource,
             originalResource: data.resource,
           });
 
           const scheduleMap = {};
-          data.resource && data.resource.schedule && data.resource.schedule.schedule_days.forEach((day) => {
+          data.resource && data.resource.schedule && data.resource.schedule.schedule_days.forEach(day => {
             scheduleMap[day.day] = day;
           });
           this.setState({ scheduleMap });
@@ -290,9 +290,9 @@ export class OrganizationEditPage extends React.Component {
     this.setState({ submitting: true });
     const setNotSubmitting = () => {
       this.setState({ submitting: false });
-    }
+    };
     dataService.post(requestString, { resources: [newResource] })
-      .then((response) => {
+      .then(response => {
         if (response.ok) {
           alert('Resource successfuly created. Thanks!');
           response.json().then(res => browserHistory.push(`/resource?id=${res.resources[0].resource.id}`));
@@ -300,7 +300,7 @@ export class OrganizationEditPage extends React.Component {
           Promise.reject(response);
         }
       })
-      .catch((error) => {
+      .catch(error => {
         alert('Issue creating resource, please try again.');
         console.log(error);
         setNotSubmitting();
@@ -320,8 +320,8 @@ export class OrganizationEditPage extends React.Component {
   prepSchedule(scheduleObj) {
     const newSchedule = [];
     let tempDay = {};
-    Object.keys(scheduleObj).forEach((day) => {
-      scheduleObj[day].forEach((curr) => {
+    Object.keys(scheduleObj).forEach(day => {
+      scheduleObj[day].forEach(curr => {
         tempDay = {};
         tempDay.day = day;
         tempDay.opens_at = curr.opens_at;
@@ -401,9 +401,9 @@ export class OrganizationEditPage extends React.Component {
     this.postNotes(this.state.notes, promises, { path: 'resources', id: this.state.resource.id });
 
     const that = this;
-    Promise.all(promises).then((resp) => {
+    Promise.all(promises).then(resp => {
       that.props.router.push({ pathname: '/resource', query: { id: that.state.resource.id } });
-    }).catch((err) => {
+    }).catch(err => {
       console.log(err);
     });
   }
@@ -571,7 +571,7 @@ export class OrganizationEditPage extends React.Component {
 
   certifyHAP() {
     dataService.post(`/api/resources/${this.state.resource.id}/certify`)
-      .then((response) => {
+      .then(response => {
         // TODO: Do not use alert() for user notifications.
         if (response.ok) {
           alert('HAP Certified. Thanks!');  // eslint-disable-line no-alert
@@ -712,9 +712,9 @@ export class OrganizationEditPage extends React.Component {
 
   addService() {
     this.serviceChild.addService();
-    const newService =document.getElementById('new-service-button');
+    const newService = document.getElementById('new-service-button');
     const domNode = ReactDOM.findDOMNode(newService);
-    domNode.scrollIntoView({behavior: "smooth"});
+    domNode.scrollIntoView({ behavior: 'smooth' });
   }
 
   render() {
@@ -746,7 +746,7 @@ export class OrganizationEditPage extends React.Component {
             <h1 className="edit--main--header--title">Services</h1>
           </header>
           <div className="edit--sections">
-             {this.renderServices()}
+            {this.renderServices()}
           </div>
         </div>)}
       </div>

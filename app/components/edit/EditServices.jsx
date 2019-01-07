@@ -9,7 +9,7 @@ class EditServices extends Component {
 
     const { services } = props;
     const existingServices = services ?
-      services.map((service) => {
+      services.map(service => {
         /* eslint-disable no-param-reassign */
         service.key = service.id;
         return service;

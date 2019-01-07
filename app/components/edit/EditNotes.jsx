@@ -6,7 +6,7 @@ class EditNotes extends Component {
 
     this.state = {
       notes: {},
-      existingNotes: props.notes ? props.notes.map((note) => {
+      existingNotes: props.notes ? props.notes.map(note => {
         const newNote = note;
         newNote.key = note.id;
         return newNote;

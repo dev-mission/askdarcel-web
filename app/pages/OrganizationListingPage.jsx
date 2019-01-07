@@ -39,7 +39,7 @@ export class OrganizationListingPage extends React.Component {
     const url = `/api/resources/${id}`;
     fetch(url, { credentials: 'include' })
       .then(r => r.json())
-      .then((data) => {
+      .then(data => {
         this.setState({ resource: data.resource });
       });
   }
@@ -47,7 +47,7 @@ export class OrganizationListingPage extends React.Component {
   verifyResource() {
     const changeRequest = { verified_at: new Date().toISOString() };
     dataService.post(`/api/resources/${this.state.resource.id}/change_requests`, { change_request: changeRequest })
-      .then((response) => {
+      .then(response => {
         // TODO: Do not use alert() for user notifications.
         if (response.ok) {
           alert('Resource verified. Thanks!');  // eslint-disable-line no-alert
@@ -78,7 +78,7 @@ export class OrganizationListingPage extends React.Component {
     return (!resource || !window.google ? <Loader /> :
     <div className="org-container">
       <article className="org" id="resource">
-      {
+        {
         resource.address &&
         <div className="org--map">
           <ResourceMap

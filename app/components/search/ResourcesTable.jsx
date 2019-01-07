@@ -33,7 +33,7 @@ function getTimes(scheduleDays) {
   // Logic to determine if the current resource is open
   // includes special logic for when a resource is open past midnight
   // on the previous day
-  scheduleDays.forEach((scheduleDay) => {
+  scheduleDays.forEach(scheduleDay => {
     const day = scheduleDay ? scheduleDay.day.replace(/,/g, '') : null;
     const opensAt = scheduleDay.opens_at;
     const closesAt = scheduleDay.closes_at;
@@ -60,7 +60,7 @@ function getTimes(scheduleDays) {
 }
 
 function getMapMarkers(resources, userLoc) {
-  const processAddress = (resource) => {
+  const processAddress = resource => {
     if (resource) {
       const address = resource.address;
       if (!address) {
@@ -83,7 +83,7 @@ function getMapMarkers(resources, userLoc) {
 function prepOpenResources(resources) {
   const preparedOpenResources = [];
 
-  resources.forEach((r) => {
+  resources.forEach(r => {
     const resource = r;
     const { openUntil, isOpen } = getTimes(resource.schedule.schedule_days);
     resource.openUntil = openUntil;
@@ -191,7 +191,7 @@ class ResourcesTable extends Component {
     }
     const url = `${path}?${queryString.stringify(params)}`;
     fetch(url, { credentials: 'include' }).then(r => r.json())
-      .then((data) => {
+      .then(data => {
         const openResources = prepOpenResources(data.resources);
 
         this.setState({

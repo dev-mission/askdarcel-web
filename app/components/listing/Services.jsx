@@ -12,11 +12,11 @@ class Services extends Component {
   renderServicesSection() {
     return this.props.services && this.props.services.length > 0
       ? (
-          <ul className="service--section--list">
-            {this.props.services.map((service, i) => (
-              <Service service={service} key={i} />
+        <ul className="service--section--list">
+          {this.props.services.map((service, i) => (
+            <Service service={service} key={i} />
             ))}
-          </ul>
+        </ul>
       ) : null;
   }
 
@@ -130,7 +130,7 @@ class ServiceContactDetails extends Component {
       <li className="service--details--item">
         <header>Contact Info</header>
         <div className="service--details--item--info">
-          {email && <p>Email: <a href={'mailto:' + email}>{email}</a></p>}
+          {email && <p>Email: <a href={`mailto:${email}`}>{email}</a></p>}
           {website && <p>Website: <a href={website}>{website}</a></p>}
         </div>
       </li>

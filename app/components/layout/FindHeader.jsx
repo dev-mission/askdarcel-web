@@ -30,7 +30,7 @@ class FindHeader extends React.Component {
           role="search"
         >
           <input
-            ref={(c) => { this.searchComponent = c; }}
+            ref={c => { this.searchComponent = c; }}
             type="text"
             className="search-field"
             placeholder='try "rental assistance" or "Compass Family Shelter"'

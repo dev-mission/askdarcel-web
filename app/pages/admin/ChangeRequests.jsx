@@ -37,11 +37,11 @@ export class ChangeRequestsPage extends React.Component {
 
     // Requests sent seperately to avoid race conditions since auth invalidates tokens upon request
     DataService.get('/api/change_requests', getAuthRequestHeaders())
-      .then((r) => {
+      .then(r => {
         changeRequests = r.change_requests;
         return DataService.get('/api/services/pending', getAuthRequestHeaders());
       })
-      .then((pendingServices) => {
+      .then(pendingServices => {
         const parsedChanges = Object.assign(
           { loaded: true, resources: {} },
           { changeRequests, count: changeRequests.length },
@@ -49,7 +49,7 @@ export class ChangeRequestsPage extends React.Component {
         );
 
         // Track invidivual Resources
-        const ensureResourceExists = (resource) => {
+        const ensureResourceExists = resource => {
           if (parsedChanges.resources[resource.id] === undefined) {
             /* eslint-disable no-param-reassign */
             resource._changeRequests = [];
@@ -60,20 +60,20 @@ export class ChangeRequestsPage extends React.Component {
         };
 
         // Attach change requests to this resource
-        parsedChanges.changeRequests.forEach((cr) => {
+        parsedChanges.changeRequests.forEach(cr => {
           ensureResourceExists(cr.resource);
           parsedChanges.resources[cr.resource.id]._changeRequests.push(cr);
         });
 
         // Attach proposed services
-        parsedChanges.services.forEach((s) => {
+        parsedChanges.services.forEach(s => {
           ensureResourceExists(s.resource);
           parsedChanges.resources[s.resource.id]._proposedServices.push(s);
         });
 
         this.setState(parsedChanges);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         browserHistory.push('/login?next=/admin/changes');
       });
@@ -114,7 +114,7 @@ export class ChangeRequestsPage extends React.Component {
    */
   renderResourceSummaryList() {
     if (this.state.resources) {
-      return Object.keys(this.state.resources).map((resourceID) => {
+      return Object.keys(this.state.resources).map(resourceID => {
         const resource = this.state.resources[resourceID];
         return (
           <div
@@ -153,18 +153,18 @@ export class ChangeRequestsPage extends React.Component {
     let service;
     // const services = {};
 
-    resource._changeRequests.forEach((changeRequest) => {
+    resource._changeRequests.forEach(changeRequest => {
       switch (changeRequest.type) {
-        case 'ServiceChangeRequest':
-          service = changeRequest.resource.services
+      case 'ServiceChangeRequest':
+        service = changeRequest.resource.services
             .find(s => s.id === changeRequest.object_id);
-          serviceChanges.push(
-            <ChangeRequest
-              key={changeRequest.id}
-              changeRequest={changeRequest}
-              updateFunction={this.update}
-              title={service.name}
-            />,
+        serviceChanges.push(
+          <ChangeRequest
+            key={changeRequest.id}
+            changeRequest={changeRequest}
+            updateFunction={this.update}
+            title={service.name}
+          />,
           );
 
           // TODO Group ServiceChangeRequests by service\
@@ -173,7 +173,7 @@ export class ChangeRequestsPage extends React.Component {
           // }
           // services[changeRequest.object_id].push(changeRequest);
           // console.log(changeRequest)
-          break;
+        break;
 
         // case 'AddressChangeRequest':
         // case 'NoteChangeRequest':
@@ -193,18 +193,18 @@ export class ChangeRequestsPage extends React.Component {
         //   );
         //   break;
 
-        default:
-          resourceChanges.push(
-            <ChangeRequest
-              key={changeRequest.id}
-              changeRequest={changeRequest}
-              updateFunction={this.update}
-            />,
+      default:
+        resourceChanges.push(
+          <ChangeRequest
+            key={changeRequest.id}
+            changeRequest={changeRequest}
+            updateFunction={this.update}
+          />,
           );
       }
     });
 
-    resource._proposedServices.forEach((svc) => {
+    resource._proposedServices.forEach(svc => {
       proposedServices.push(
         <ProposedService
           key={svc.id}
