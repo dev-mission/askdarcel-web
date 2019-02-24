@@ -10,7 +10,7 @@
   "dependencies": {
     "@sentry/browser": "^4.0.6",
     "es6-promise": "^3.0.2",
-    "express": "4.13.4",
+    "express": "^4.13.4",
     "google-map-react": "^0.34.0",
     "history": "3.2.1",
     "instantsearch.css": "^7.0.0",
@@ -99,6 +99,7 @@
     "heroku-prebuild": "touch config.yml",
     "postinstall": "npm run build",
     "build": "cross-env NODE_ENV=production webpack",
+    "start": "node app.js",
     "dev": "NODE_ENV=development webpack-dev-server --inline --open --mode=development",
     "testcafe": "testcafe"
   },
