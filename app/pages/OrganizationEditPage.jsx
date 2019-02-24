@@ -11,6 +11,7 @@ import EditNotes from '../components/edit/EditNotes';
 import EditSchedule from '../components/edit/EditSchedule';
 import EditPhones from '../components/edit/EditPhones';
 import EditSidebar from '../components/edit/EditSidebar';
+import MultiSelectDropdown from '../components/edit/MultiSelectDropdown';
 import * as dataService from '../utils/DataService';
 
 import './OrganizationEditPage.scss';
@@ -194,6 +195,7 @@ export class OrganizationEditPage extends React.Component {
     this.keepOnPage = this.keepOnPage.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleResourceFieldChange = this.handleResourceFieldChange.bind(this);
+    this.handleResourceNeedsFieldChange = this.handleResourceNeedsFieldChange.bind(this);
     this.handleScheduleChange = this.handleScheduleChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
@@ -376,6 +378,10 @@ export class OrganizationEditPage extends React.Component {
       resourceChangeRequest.legal_status = this.state.legal_status;
       resourceModified = true;
     }
+    if (this.state.needs && !_.isEqual(this.state.needs, resource.needs)) {
+      resourceChangeRequest.needs = this.state.needs;
+      resourceModified = true;
+    }
     // fire off resource request
     if (resourceModified) {
       promises.push(dataService.post(`/api/resources/${resource.id}/change_requests`, { change_request: resourceChangeRequest }));
@@ -549,6 +555,10 @@ export class OrganizationEditPage extends React.Component {
     this.setState(object);
   }
 
+  handleResourceNeedsFieldChange(e) {
+    this.setState({needs: e, inputsDirty: true});
+  }
+
   handleScheduleChange(scheduleObj) {
     this.setState({ scheduleObj, inputsDirty: true });
   }
@@ -681,6 +691,13 @@ export class OrganizationEditPage extends React.Component {
               onChange={this.handleResourceFieldChange}
             />
           </li>
+
+          <MultiSelectDropdown
+            selectedItems={resource.needs}
+            handleSelectChange={this.handleResourceNeedsFieldChange}
+            label={'Needs'}
+            optionsRoute={'needs'}
+          />
 
           <EditSchedule
             schedule={this.state.resource.schedule}
