@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtendedDefinePlugin = require('extended-define-webpack-plugin');
 
 const CONFIG_YAML = process.env.CONFIG_YAML || 'config.yml';
+console.log('CONFIG_YAML=', CONFIG_YAML);
 
 // Take the user config from the file, and override keys with environment variables if they exist
 const userConfig = yaml.safeLoad(readFileSync(CONFIG_YAML, 'utf8'));
@@ -15,6 +16,7 @@ const environmentConfig = [
   'ALGOLIA_READ_ONLY_API_KEY',
   'MOHCD_SUBDOMAIN',
 ];
+console.log('userConfig=', userConfig);
 
 const config = environmentConfig.reduce((acc, key) => {
   if (process.env[key] !== undefined) { acc[key] = process.env[key]; }
