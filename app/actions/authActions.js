@@ -29,6 +29,7 @@ export default {
           if (response.status === 200) {
             dispatch(adminLoginSuccess());
             const headers = response.headers;
+            console.log('adminLogin headers=', headers);
             localStorage.setItem('authHeaders', JSON.stringify({
               'access-token': headers.get('access-token'),
               client: headers.get('client'),
