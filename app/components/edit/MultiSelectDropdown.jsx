@@ -4,7 +4,7 @@ import * as dataService from '../../utils/DataService';
 
 function dataToSelectValue(data) {
   return {
-    label: data.name,
+    label: (data.depth ? "- ".repeat(data.depth) : '') + data.name,
     value: data,
   };
 }
