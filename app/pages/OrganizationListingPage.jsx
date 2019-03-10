@@ -14,6 +14,7 @@ import * as dataService from '../utils/DataService';
 // import ServiceCard from '../components/layout/ServiceCard';
 import { TableOfOpeningTimes } from '../components/listing/TableOfOpeningTimes';
 
+import config from '../config';
 
 function scrollToElement(selector) {
   const elem = document.getElementById(selector);
@@ -38,7 +39,7 @@ export class OrganizationListingPage extends React.Component {
     const { query } = this.props.location;
     const { id } = query;
     const url = `/api/resources/${id}`;
-    fetch(url, { credentials: 'include' })
+    fetch(config.API_URL + url, { credentials: 'include' })
       .then(r => r.json())
       .then((data) => {
         this.setState({ resource: data.resource });

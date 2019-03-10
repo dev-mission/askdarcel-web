@@ -10,6 +10,9 @@ import Loader from '../ui/Loader';
 import ResourcesList from './ResourcesList';
 import Gmap from './ResourcesMap';
 
+import config from '../../config';
+
+
 // Show the span of results (11 - 20 for example rather than the #10)
 // Make the map update with proper markers
 
@@ -190,7 +193,7 @@ class ResourcesTable extends Component {
       });
     }
     const url = `${path}?${queryString.stringify(params)}`;
-    fetch(url, { credentials: 'include' }).then(r => r.json())
+    fetch(config.API_URL + url, { credentials: 'include' }).then(r => r.json())
       .then((data) => {
         const openResources = prepOpenResources(data.resources);
 

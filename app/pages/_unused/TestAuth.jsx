@@ -4,18 +4,19 @@ import { browserHistory } from 'react-router'
 import { images } from '../../assets';
 
 import { getAuthRequestHeaders } from '../../utils/index';
+import config from '../../config';
 
 
 class TestAuth extends React.Component {
   constructor(props) {
     super(props);
-  
+
     this.state = {};
   }
 
   componentDidMount() {
     let authHeaders = JSON.parse(localStorage.authHeaders);
-    fetch("/api/change_requests", {headers: getAuthRequestHeaders()}).then(resp => {
+    fetch(config.API_URL + "/api/change_requests", {headers: getAuthRequestHeaders()}).then(resp => {
       console.log(`Api response: ${resp}`);
     })
     .catch(err => console.log('auth err:',err));
@@ -32,5 +33,3 @@ class TestAuth extends React.Component {
 }
 
 export default TestAuth;
-
-

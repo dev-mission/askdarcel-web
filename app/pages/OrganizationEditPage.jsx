@@ -15,6 +15,7 @@ import MultiSelectDropdown from '../components/edit/MultiSelectDropdown';
 import * as dataService from '../utils/DataService';
 
 import './OrganizationEditPage.scss';
+import config from '../config';
 
 function getDiffObject(curr, orig) {
   return Object.entries(curr).reduce((acc, [key, value]) => {
@@ -221,7 +222,7 @@ export class OrganizationEditPage extends React.Component {
     const resourceID = query.resourceid;
     if (resourceID) {
       const url = `/api/resources/${resourceID}`;
-      fetch(url).then(r => r.json())
+      fetch(config.API_URL + url).then(r => r.json())
         .then((data) => {
           this.setState({
             resource: data.resource,

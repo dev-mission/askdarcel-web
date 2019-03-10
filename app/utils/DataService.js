@@ -1,4 +1,5 @@
 import * as _ from 'lodash/fp/object';
+import config from '../config';
 
 function setAuthHeaders(resp) {
   const headers = resp.headers;
@@ -24,7 +25,7 @@ export function post(url, body, headers) {
   if (headers) {
     queryHeaders = _.assignIn(queryHeaders, headers);
   }
-  return fetch(url, {
+  return fetch(config.API_URL + config.API_URL + url, {
     method: 'POST',
     mode: 'cors',
     headers: queryHeaders,
@@ -43,7 +44,7 @@ export function get(url, headers) {
   if (headers) {
     queryHeaders = _.assignIn(queryHeaders, headers);
   }
-  return fetch(url, {
+  return fetch(config.API_URL + url, {
     method: 'GET',
     mode: 'cors',
     headers: queryHeaders,
@@ -61,7 +62,7 @@ export function APIDelete(url, headers) {
   if (headers) {
     queryHeaders = _.assignIn(queryHeaders, headers);
   }
-  return fetch(url, {
+  return fetch(config.API_URL + url, {
     method: 'DELETE',
     mode: 'cors',
     headers: queryHeaders,
