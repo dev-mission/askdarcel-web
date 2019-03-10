@@ -8,7 +8,7 @@ const CONFIG_YAML = process.env.CONFIG_YAML || 'config.yml';
 console.log('CONFIG_YAML=', CONFIG_YAML);
 
 // Take the user config from the file, and override keys with environment variables if they exist
-const userConfig = yaml.safeLoad(readFileSync(CONFIG_YAML, 'utf8'));
+const userConfig = yaml.safeLoad(readFileSync(CONFIG_YAML, 'utf8')) || {};
 const environmentConfig = [
   'GOOGLE_API_KEY',
   'ALGOLIA_INDEX_PREFIX',
