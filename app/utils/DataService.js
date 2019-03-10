@@ -25,7 +25,7 @@ export function post(url, body, headers) {
   if (headers) {
     queryHeaders = _.assignIn(queryHeaders, headers);
   }
-  return fetch(config.API_URL + config.API_URL + url, {
+  return fetch(config.API_URL + url, {
     method: 'POST',
     mode: 'cors',
     headers: queryHeaders,
