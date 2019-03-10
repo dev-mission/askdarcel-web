@@ -34,7 +34,7 @@ export class HomePage extends React.Component {
       }
     }.bind(this);
 
-    httpRequest.open('GET', tempUrl, true);
+    httpRequest.open('GET', config.API_URL + tempUrl, true);
     httpRequest.onreadystatechange = callback;
     httpRequest.send(null);
   }
