@@ -4,7 +4,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  top: 0;
+  top: 81px;
   display: flex;
 
   .results-table {
@@ -55,7 +55,7 @@
         background: #FFF;
         padding: $padding-default;
         // margin: 0 0 $padding-default;
-        
+
         a {
           float: right;
          }
