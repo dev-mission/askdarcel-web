@@ -14,6 +14,7 @@ const environmentConfig = [
   'ALGOLIA_INDEX_PREFIX',
   'ALGOLIA_APPLICATION_ID',
   'ALGOLIA_READ_ONLY_API_KEY',
+  'API_URL',
   'MOHCD_SUBDOMAIN',
 ];
 console.log('userConfig=', userConfig);
@@ -22,6 +23,7 @@ const config = environmentConfig.reduce((acc, key) => {
   if (process.env[key] !== undefined) { acc[key] = process.env[key]; }
   return acc;
 }, userConfig);
+console.log('config=', config);
 
 const appRoot = path.resolve(__dirname, 'app/');
 const buildDir = path.resolve(__dirname, 'build');
